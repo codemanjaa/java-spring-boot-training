@@ -1,5 +1,7 @@
 package com.manjaa.cruddemo;
 
+import java.util.List;
+
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -21,13 +23,66 @@ public class CruddemoApplication {
 			System.out.println("Heloo JPA!!!");
 			//createStudent(studentDAO);
 			//createMultiStudent(studentDAO);
-			readStudent(studentDAO);
+			//readStudent(studentDAO);
+			//queryForStudents(studentDAO);
+			//queryByLastName(studentDAO);
+			//update(studentDAO);
+			//delete(studentDAO);
 			
 		};
 
 	}
 
 	
+
+	private void delete(StudentDAO studentDAO) {
+		int id = 5;
+		System.out.println("Removing the ");
+		studentDAO.delete(id);
+	}
+
+	private void update(StudentDAO studentDAO) {
+		
+		int id = 1;
+		// retrieve the student
+		System.out.println("Retreving ID record from db...");
+		Student student = studentDAO.findById(id);
+
+		// Modifying the email
+		System.out.println("Modifying...");
+		student.setEmail("variavar@vairavar.com");
+
+		// update
+		System.out.println("Updating...");
+		studentDAO.update(student);
+
+		// display
+		System.out.println("Modified ..."+student);
+
+	}
+
+	private void queryByLastName(StudentDAO studentDAO) {
+		// get the list of students
+
+		List<Student> students = studentDAO.findByLastname("mentor");
+
+		// display the list
+		for (Student student: students){
+			System.out.println(student);
+		}
+	}
+
+	private void queryForStudents(StudentDAO studentDAO) {
+		// get a list of students
+		List<Student> theStudents = studentDAO.findAll();
+
+		// display the list of students
+		for (Student student:theStudents){
+			System.out.println(student);
+
+		}
+
+	}
 
 	private void readStudent(StudentDAO studentDAO) {
 

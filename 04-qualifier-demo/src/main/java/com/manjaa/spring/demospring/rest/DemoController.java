@@ -20,7 +20,7 @@ public class DemoController {
 
     @GetMapping("/")
     public String sayHello(){
-        return "Hello Spory!!!";
+        return "Hello Sporty!!!";
     }
     @GetMapping("/dailyworkout")
     public String getDailyWorkout(){

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+                xmlns:sec="http://www.thymeleaf.org/extras/spring-security"    >
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<title>Digital Services</title>
+</head>
+<body>
+    <h3>DataZentist Oy</h3>
+    <hr />
+    Hello <span sec:authentication="principal.username"></span>
+    <br/>
+   Assigned role(s) <span sec:authentication="principal.authorities"></span>
+    <hr / >
+    <p>We are developing the services...</p>
+   <div sec:authorize="hasRole('MANAGER')">
+    <p>
+    <a th:href="@{/leaders}">Leadership</a>
+   </p>
+</div>
+<div sec:authorize="hasRole('ADMIN')">
+   <p>
+    <a th:href="@{/systems}">System Services {ONLY FOR ADMINS}</a>
+   </p>
+</div>
+    <form action="#" name="logoutForm" th:action="@{/logout}" method="POST">
+        <input type="submit" class="btn btn-dark" value="logout" />
+    </form>
+    <hr>
+</body>
+</html>
